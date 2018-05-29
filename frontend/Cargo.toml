@@ -5,3 +5,9 @@ authors = ["Joshua Barretto <joshua.s.barretto@gmail.com>"]
 
 [dependencies]
 client = { path = "../client" }
+gfx = '0.17.1'
+gfx_core = '0.8.2'
+gfx_device_gl = '0.15.2'
+gfx_window_glutin = '0.24.0'
+gfx_macros = '0.2.1'
+glutin = '0.16.0'
