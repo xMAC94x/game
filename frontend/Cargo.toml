@@ -3,11 +3,46 @@ name = "frontend"
 version = "0.1.0"
 authors = ["Joshua Barretto <joshua.s.barretto@gmail.com>"]
 
+[features]
+default = []
+metal = ["gfx-backend-metal"]
+gl = ["gfx-backend-gl"]
+dx12 = ["gfx-backend-dx12"]
+vulkan = ["gfx-backend-vulkan"]
+unstable = []
+
 [dependencies]
 client = { path = "../client" }
 gfx = '0.17.1'
+gfx-hal = { path = "3rdparty/gfx/src/hal", version = "0.1" }
 gfx_core = '0.8.2'
 gfx_device_gl = '0.15.2'
 gfx_window_glutin = '0.24.0'
 gfx_macros = '0.2.1'
 glutin = '0.16.0'
+winit = '0.13.0'
+image = "0.18"
+log = "0.4"
+env_logger = "0.5"
+
+[dependencies.gfx-backend-gl]
+path = "3rdparty/gfx/src/backend/gl"
+version = "0.1"
+features = ["glutin"]
+optional = true
+
+[dependencies.gfx-backend-vulkan]
+path = "3rdparty/gfx/src/backend/vulkan"
+version = "0.1"
+#features = ["glsl-to-spirv"]
+optional = true
+
+[target.'cfg(target_os = "macos")'.dependencies.gfx-backend-metal]
+path = "3rdparty/gfx/src/backend/metal"
+version = "0.1"
+optional = true
+
+[target.'cfg(windows)'.dependencies.gfx-backend-dx12]
+path = "3rdparty/gfx/src/backend/dx12"
+version = "0.1"
+optional = true
